@@ -1,65 +1,65 @@
 # Users
 
-|Column             |Type  |Options            |
-|-------------------|------|-------------------|
-|nickname           |string|null:false         |
-|email              |string|UNIQUE null:false  |
-|encrypted_password |string|null:false         |
-|first_name         |string|null:false         |
-|last_name          |string|null:false         |
-|first_name_kana    |string|null:false         |
-|last_name_kana     |string|null:false         |
-|birth_day          |date  |null:false         |
+|Column             |Type  |Options               |
+|-------------------|------|----------------------|
+|nickname           |string|null:false            |
+|email              |string|unique:true null:false|
+|encrypted_password |string|null:false            |
+|first_name         |string|null:false            |
+|last_name          |string|null:false            |
+|first_name_kana    |string|null:false            |
+|last_name_kana     |string|null:false            |
+|birth_day          |date  |null:false            |
 
 ## Association
 has_many: items
 has_many: purchases
-has_many: address
+
 
 
 # Items
 
-|Column      |Type      |Options            |
-|------------|----------|-------------------|
-|introduction|text      |null:false         |
-|item_name   |string    |null:false         |
-|category    |string    |11項目からの選択     |
-|status      |string    |6項目からの選択      |
-|ship_form   |string    |48項目             |
-|item_value  |string    |¥300~9,999,999     |
-|user_id     |references|foreign_key:true   |
+|Column            |Type      |Options            |
+|------------------|----------|-------------------|
+|introduction      |text      |null:false         |
+|item_name         |string    |null:false         |
+|category_id       |integer   |                   |
+|status_id         |integer   |                   |
+|ship_form_id      |integer   |                   |
+|item_value        |string    |                   |
+|user              |references|foreign_key:true   |
+|delivery_charge_id|integer   |                   |
+|days_to_ship_id   |integer   |                   |
 
 ## Association
 belongs_to: user
-belongs_to: purchase
-belongs_to: address
+has_one: purchase
+
 
 
 # Purchases
 
-|Column      |Type      |Options            |
-|------------|----------|-------------------|
-|user_id     |references|foreign_key:true   |
-|item_id     |references|foreign_key:true   |
+|Column   |Type      |Options            |
+|---------|----------|-------------------|
+|user     |references|foreign_key:true   |
+|item     |references|foreign_key:true   |
 
 ## Association
 belongs_to: user
 belongs_to: item
-belongs_to: address
+has_one: address
 
 
 # Addresses
 
-|Column      |Type      |Options                  |
-|------------|----------|-------------------------|
-|purchase_id |references|foreign_key:true         |
-|post_code   |string    |3桁-4桁, null:false       |
-|ship_form   |string    |48項目,Itemsの使い回す      |
-|city        |string    |null:false               |
-|building    |string    |                         |
-|tell        |string    |ハイフンなし,10桁以上11桁以内|
+|Column         |Type      |Options                  |
+|---------------|----------|-------------------------|
+|purchase       |references|foreign_key:true         |
+|post_code      |string    |null:false               |
+|ship_form_id   |integer   |                         |
+|city           |string    |null:false               |
+|building       |string    |                         |
+|tell           |string    |                         |
 
 ## Association
-belongs_to: user
-belongs_to: item
 belongs_to: purchase
