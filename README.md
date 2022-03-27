@@ -19,17 +19,17 @@ has_many: purchases
 
 # Items
 
-|Column            |Type      |Options            |
-|------------------|----------|-------------------|
-|introduction      |text      |null:false         |
-|item_name         |string    |null:false         |
-|category_id       |integer   |                   |
-|status_id         |integer   |                   |
-|ship_form_id      |integer   |                   |
-|item_value        |string    |                   |
-|user              |references|foreign_key:true   |
-|delivery_charge_id|integer   |                   |
-|days_to_ship_id   |integer   |                   |
+|Column            |Type      |Options                     |
+|------------------|----------|----------------------------|
+|introduction      |text      |null:false                  |
+|item_name         |string    |null:false                  |
+|category_id       |integer   |null:false                  |
+|status_id         |integer   |null:false                  |
+|ship_form_id      |integer   |null:false                  |
+|item_value        |string    |null:false                  |
+|user              |references|foreign_key:true, null:false|
+|delivery_charge_id|integer   |null:false                  |
+|days_to_ship_id   |integer   |null:false                  |
 
 ## Association
 belongs_to: user
@@ -39,10 +39,10 @@ has_one: purchase
 
 # Purchases
 
-|Column   |Type      |Options            |
-|---------|----------|-------------------|
-|user     |references|foreign_key:true   |
-|item     |references|foreign_key:true   |
+|Column   |Type      |Options                     |
+|---------|----------|----------------------------|
+|user     |references|foreign_key:true, null:false|
+|item     |references|foreign_key:true, null:false|
 
 ## Association
 belongs_to: user
@@ -52,14 +52,15 @@ has_one: address
 
 # Addresses
 
-|Column         |Type      |Options                  |
-|---------------|----------|-------------------------|
-|purchase       |references|foreign_key:true         |
-|post_code      |string    |null:false               |
-|ship_form_id   |integer   |                         |
-|city           |string    |null:false               |
-|building       |string    |                         |
-|tell           |string    |                         |
+|Column         |Type      |Options                    |
+|---------------|----------|---------------------------|
+|purchase       |references|foreign_key:true,null:false|
+|post_code      |string    |null:false                 |
+|ship_form_id   |integer   |null:false                 |
+|city           |string    |null:false                 |
+|building       |string    |                           |
+|tell           |string    |null:false                 |
+|house_number   |string    |null:false                 |
 
 ## Association
 belongs_to: purchase
