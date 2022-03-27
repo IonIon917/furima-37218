@@ -26,7 +26,7 @@ has_many: purchases
 |category_id       |integer   |null:false                  |
 |status_id         |integer   |null:false                  |
 |ship_form_id      |integer   |null:false                  |
-|item_value        |string    |null:false                  |
+|item_value        |integer   |null:false                  |
 |user              |references|foreign_key:true, null:false|
 |delivery_charge_id|integer   |null:false                  |
 |days_to_ship_id   |integer   |null:false                  |
