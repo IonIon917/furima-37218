@@ -5,4 +5,5 @@ class Item < ApplicationRecord
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank"} 
   validates :status_id, numericality: { other_than: 1 , message: "can't be blank"} 
   validates :delivery_charge_id, numericality: { other_than: 1 , message: "can't be blank"} 
+  validates :delivery_charge_id, numericality: { other_than: 0 , message: "can't be blank"} 
 end
