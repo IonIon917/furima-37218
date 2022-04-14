@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank"} 
   validates :status_id, numericality: { other_than: 1 , message: "can't be blank"} 
   validates :delivery_charge_id, numericality: { other_than: 1 , message: "can't be blank"} 
-  validates :delivery_charge_id, numericality: { other_than: 0 , message: "can't be blank"} 
+  validates :ship_from_id, numericality: { other_than: 0 , message: "can't be blank"} 
   validates :days_to_ship_id, numericality: { other_than: 1 , message: "can't be blank"} 
   validates :introduction, presence: true
   validates :item_name, presence: true
