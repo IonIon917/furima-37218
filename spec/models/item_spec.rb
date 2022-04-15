@@ -68,6 +68,21 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include ("Image can't be blank") 
       end
+      it 'item_nameが空欄の時保存ができない' do
+        @item.item_name = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Item name can't be blank") 
+      end
+      it 'userが紐づいていなければ出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
+      end
+      it 'item_valueが少数では保存できない' do
+        @item.item_value = '540.3'
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Item value must be an integer") 
+      end
     end
   end
 end
