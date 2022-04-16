@@ -78,7 +78,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("User must exist")
       end
-      it 'item_valueが少数では保存できない' do
+      it 'item_valueが小数では保存できない' do
         @item.item_value = '540.3'
         @item.valid?
         expect(@item.errors.full_messages).to include ("Item value must be an integer") 
