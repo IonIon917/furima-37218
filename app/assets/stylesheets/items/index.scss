@@ -242,17 +242,14 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
 }
 
 .item-lists>.list {
-  width: 50%;
+  width: 37vh;
   padding: 1vw;
   background-color: #FFF;
-  flex-wrap: wrap;
-  display: flex;
-  align-items: center;
 }
+
 
 .item-img-content {
   position: relative;
