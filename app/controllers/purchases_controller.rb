@@ -1,20 +1,29 @@
 class PurchasesController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
-    @address_purchase = AddressPurchase.new
+    if @item.purchase.present?
+      redirect_to root_path
+    else
+      
+      @address_purchase = AddressPurchase.new
+    end
   end
 
 
   
   def create
     @item = Item.find(params[:item_id])
-    @address_purchase = AddressPurchase.new (purchase_params)
-    if @address_purchase.valid?
-      pay_item
-      @address_purchase.save
+    if @item.purchase.present?
       redirect_to root_path
     else
-      render :index
+      @address_purchase = AddressPurchase.new (purchase_params)
+      if @address_purchase.valid?
+        pay_item
+        @address_purchase.save
+        redirect_to root_path
+      else
+        render :index
+      end
     end
   end
 
@@ -30,6 +39,7 @@ class PurchasesController < ApplicationController
       card: purchase_params[:token],    # カードトークン
       currency: 'jpy'
     )
-    end
+  end
+
 
 end
