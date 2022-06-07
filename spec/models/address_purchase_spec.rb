@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe AddressPurchase, type: :model do
   before do
     @user = FactoryBot.create(:user)
-    @item = FactoryBot.build(:item)
+    @item = FactoryBot.create(:item)
     @address_purchase = FactoryBot.build(:address_purchase, user_id: @user.id, item_id: @item.id)
   end
 
@@ -52,10 +52,35 @@ RSpec.describe AddressPurchase, type: :model do
         @address_purchase.valid?
         expect(@address_purchase.errors.full_messages).to include ("Post code is invalid. Enter it as follows (e.g. 123-4567)")
       end
-      it '電話番号が「10桁以上11桁未満」の半角数値以外では購入できない' do
-        @address_purchase.tell = ''
+      it '電話番号が9桁以内では購入できない' do
+        @address_purchase.tell = '12345678'
         @address_purchase.valid?
         expect(@address_purchase.errors.full_messages).to include ("Tell is invalid. Input only number")
+      end
+      it '電話番号が12桁以上では購入できない' do
+        @address_purchase.tell = '1234567890123'
+        @address_purchase.valid?
+        expect(@address_purchase.errors.full_messages).to include ("Tell is invalid. Input only number")
+      end
+      it '電話番号は数字のみでなければ購入できない' do
+        @address_purchase.tell = 'abcdefghijk'
+        @address_purchase.valid?
+        expect(@address_purchase.errors.full_messages).to include ("Tell is invalid. Input only number")
+      end
+      it 'userが紐付いていなければ購入できない' do
+        @address_purchase.user_id = nil
+        @address_purchase.valid?
+        expect(@address_purchase.errors.full_messages).to include ("User can't be blank")
+      end
+      it 'itemが紐づいていなければ購入できない' do
+        @address_purchase.item_id = nil
+        @address_purchase.valid?
+        expect(@address_purchase.errors.full_messages).to include ("Item can't be blank")
+      end
+      it 'tokenが空では購入できない' do
+        @address_purchase.token = ''
+        @address_purchase.valid?
+        expect(@address_purchase.errors.full_messages).to include ("Token can't be blank")
       end
     end
   end
