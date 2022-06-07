@@ -2,18 +2,6 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :item_find
   def index
-    
-    if @item.purchase.present?
-      redirect_to root_path
-    else
-      
-      @address_purchase = AddressPurchase.new
-    end
-  end
-
-
-  
-  def create
     if @item.purchase.present? && current_user.id == @item.user_id
       redirect_to root_path
     else
@@ -26,6 +14,13 @@ class PurchasesController < ApplicationController
         render :index
       end
     end
+
+  end
+
+
+  
+  def create
+
   end
 
   private
