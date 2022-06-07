@@ -7,8 +7,7 @@ FactoryBot.define do
     building                {"柳ビル103"}
     tell                    {Faker::Number.leading_zero_number(digits: 11)}
 
-    user_id                 {@user.id}
-    item_id                 {@item.id}
+
     
     token                   {'tok_abcdefghijk00000000000000000'}
 
