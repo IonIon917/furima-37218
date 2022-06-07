@@ -53,12 +53,12 @@ RSpec.describe AddressPurchase, type: :model do
         expect(@address_purchase.errors.full_messages).to include ("Post code is invalid. Enter it as follows (e.g. 123-4567)")
       end
       it '電話番号が9桁以内では購入できない' do
-        @address_purchase.tell = '12345678'
+        @address_purchase.tell = '123456789'
         @address_purchase.valid?
         expect(@address_purchase.errors.full_messages).to include ("Tell is invalid. Input only number")
       end
       it '電話番号が12桁以上では購入できない' do
-        @address_purchase.tell = '1234567890123'
+        @address_purchase.tell = '123456789012'
         @address_purchase.valid?
         expect(@address_purchase.errors.full_messages).to include ("Tell is invalid. Input only number")
       end
