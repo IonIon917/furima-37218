@@ -12,7 +12,7 @@ class AddressPurchase
     validates :ship_from_id, numericality: { other_than: 0 , message: "can't be blank"} 
     validates :post_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Enter it as follows (e.g. 123-4567)"}
     validates :city
-    validates :tell, format: {with: /\A\d{10}\z/, message: "is invalid. Input only number"}
+    validates :tell, format: {with: /\A\d{11}\z/, message: "is invalid. Input only number"}
     validates :house_number
     validates :token
   end

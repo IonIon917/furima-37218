@@ -5,7 +5,7 @@ FactoryBot.define do
     city                    {Gimei::city.kanji}
     house_number            {"青山1-1-1"}
     building                {"柳ビル103"}
-    tell                    {Faker::Number.leading_zero_number(digits: 10)}
+    tell                    {Faker::Number.leading_zero_number(digits: 11)}
 
     user_id                 {@user.id}
     item_id                 {@item.id}
