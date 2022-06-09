@@ -4,7 +4,8 @@ class AddressPurchase
   
 
   
-  attr_accessor :post_code, :ship_from_id, :city, :building, :tell, :house_number, :user_id, :item_id, :token, :price
+  attr_accessor :post_code, :ship_from_id, :city, :building, :tell, :house_number, :user_id, :item_id, :token
+  
 
   
 
@@ -20,7 +21,7 @@ class AddressPurchase
   end
 
   def save
-    purchase = Purchase.create(user_id: user_id, item_id: item_id, token: token)
+    purchase = Purchase.create(user_id: user_id, item_id: item_id)
 
     Address.create(post_code: post_code, ship_from_id: ship_from_id, city: city, building: building, tell: tell, house_number: house_number, purchase_id: purchase.id)
   end
