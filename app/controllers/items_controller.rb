@@ -25,7 +25,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-
+    unless @item.purchase.blank?
+      redirect_to root_path
+    end
   end
 
   def update
@@ -50,7 +52,7 @@ class ItemsController < ApplicationController
   end
 
   def edit_destroy
-    if @item.user_id == current_user.id
+    if @item.user_id == current_user.id 
       @item.destroy
       redirect_to root_path
     else
