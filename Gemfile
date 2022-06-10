@@ -67,3 +67,4 @@ gem 'active_hash'
 gem 'jp_prefecture'
 gem 'pry-rails'
 gem 'payjp'
+gem "aws-sdk-s3", require: false
