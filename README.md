@@ -50,7 +50,7 @@ belongs_to: item
 has_one: address
 
 
-# Addresses
+# Address
 
 |Column         |Type      |Options                    |
 |---------------|----------|---------------------------|
